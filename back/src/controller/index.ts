@@ -9,13 +9,10 @@ const addPhrase = async (req: Request, res: Response) => {
       error: "not found",
     });
   try {
-    console.log(phrase);
-
     await Phrase.create({
       by,
       phrase,
     });
-
     res.status(200).json({
       state: "ok",
     });
@@ -31,8 +28,10 @@ const addTheme = async (req: Request, res: Response) => {
       error: "not found",
     });
   try {
-    await Theme.create();
-
+    await Theme.create({
+      name,
+      url,
+    });
     res.status(200).json({
       state: "ok",
     });
@@ -70,7 +69,6 @@ const dropPhrase = async (req: Request, res: Response) => {
     if (deletedCount === 0) {
       return res.status(404).json({ error: "Phrase not found" });
     }
-
     res.status(200).json({ message: "Phrase deleted successfully" });
   } catch (error) {
     console.error(error);
@@ -126,6 +124,33 @@ const updatePhrase = async (req: Request, res: Response) => {
   }
 };
 
+const updateTheme = async (req: Request, res: Response) => {
+  const { name, url, id } = req.body;
+  if (!name && !url && !id)
+    res.status(400).json({
+      error: "not found",
+    });
+  try {
+    await Theme.update(
+      {
+        name,
+        url,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+
+    res.status(200).json({
+      state: "ok",
+    });
+  } catch (error) {
+    res.status(500).send("internal server error");
+  }
+};
+
 const searchAllPhrase = async (req: Request, res: Response) => {
   try {
     const term = req.query.term;
@@ -158,4 +183,5 @@ export {
   dropTheme,
   updatePhrase,
   searchAllPhrase,
+  updateTheme,  
 };

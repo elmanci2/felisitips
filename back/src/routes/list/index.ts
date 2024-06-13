@@ -7,6 +7,7 @@ import {
   dropTheme,
   updatePhrase,
   searchAllPhrase,
+  updateTheme,
 } from "../../controller";
 
 const RoutesListPost = [
@@ -23,6 +24,11 @@ const RoutesListPost = [
     route: "/update-phrase",
     function: updatePhrase,
   },
+
+  {
+    route: "/update-theme",
+    function: updateTheme,
+  },
 ];
 
 const RoutesListGet = [
@@ -35,7 +41,7 @@ const RoutesListGet = [
     function: dropPhrase,
   },
   {
-    route: "/delete-phrase",
+    route: "/delete-theme",
     function: dropTheme,
   },
   {
