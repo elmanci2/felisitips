@@ -15,7 +15,7 @@ import {
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { severConfig } from "@/server/config";
 
-const renderActionsCell = (params, handleEditClick, handleDeleteClick) => {
+const ActionsCell = ({ params, handleEditClick, handleDeleteClick }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -34,39 +34,11 @@ const renderActionsCell = (params, handleEditClick, handleDeleteClick) => {
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={() => handleEditClick(params.row)}>Edit</MenuItem>
-        <MenuItem onClick={() => handleDeleteClick(params.row)}>
-          Delete
-        </MenuItem>
+        <MenuItem onClick={() => handleDeleteClick(params.row)}>Delete</MenuItem>
       </Menu>
     </>
   );
 };
-
-const columns = (handleEditClick, handleDeleteClick) => [
-  {
-    field: "checkbox",
-    headerName: "Checkbox",
-    width: 100,
-    renderCell: (params) => (
-      <input
-        type="checkbox"
-        checked={params.row.selected}
-        onChange={() => {}}
-      />
-    ),
-  },
-  { field: "id", headerName: "ID", width: 90 },
-  { field: "by", headerName: "Author", width: 200 },
-  { field: "phrase", headerName: "Quote", width: 500 },
-  { field: "createdAt", headerName: "Created At", width: 180 },
-  {
-    field: "actions",
-    headerName: "Actions",
-    width: 150,
-    renderCell: (params) =>
-      renderActionsCell(params, handleEditClick, handleDeleteClick),
-  },
-];
 
 const Quote = () => {
   const [myDate, setMyDate] = useState([]);
@@ -127,11 +99,42 @@ const Quote = () => {
     getDate();
   }, []);
 
+  const columns = [
+    {
+      field: "checkbox",
+      headerName: "Checkbox",
+      width: 100,
+      renderCell: (params) => (
+        <input
+          type="checkbox"
+          checked={params.row.selected}
+          onChange={() => {}}
+        />
+      ),
+    },
+    { field: "id", headerName: "ID", width: 90 },
+    { field: "by", headerName: "Author", width: 200 },
+    { field: "phrase", headerName: "Quote", width: 500 },
+    { field: "createdAt", headerName: "Created At", width: 180 },
+    {
+      field: "actions",
+      headerName: "Actions",
+      width: 150,
+      renderCell: (params) => (
+        <ActionsCell
+          params={params}
+          handleEditClick={handleEditClick}
+          handleDeleteClick={handleDeleteClick}
+        />
+      ),
+    },
+  ];
+
   return (
     <PageContainer>
       <DataGrid
         rows={myDate}
-        columns={columns(handleEditClick, handleDeleteClick)}
+        columns={columns}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 20 },

@@ -15,7 +15,7 @@ import {
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { severConfig } from "@/server/config";
 
-const renderActionsCell = (params, handleEditClick, handleDeleteClick) => {
+const ActionsCell = ({ params, handleEditClick, handleDeleteClick }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -41,20 +41,6 @@ const renderActionsCell = (params, handleEditClick, handleDeleteClick) => {
     </>
   );
 };
-
-const columns = (handleEditClick, handleDeleteClick) => [
-  { field: "id", headerName: "ID", width: 90 },
-  { field: "name", headerName: "Name", width: 200 },
-  { field: "url", headerName: "URL", width: 500 },
-  { field: "createdAt", headerName: "Created At", width: 180 },
-  {
-    field: "actions",
-    headerName: "Actions",
-    width: 150,
-    renderCell: (params) =>
-      renderActionsCell(params, handleEditClick, handleDeleteClick),
-  },
-];
 
 const SamplePage = () => {
   const [myDate, setMyDate] = useState([]);
@@ -115,11 +101,30 @@ const SamplePage = () => {
     getDate();
   }, []);
 
+  const columns = [
+    { field: "id", headerName: "ID", width: 90 },
+    { field: "name", headerName: "Name", width: 200 },
+    { field: "url", headerName: "URL", width: 500 },
+    { field: "createdAt", headerName: "Created At", width: 180 },
+    {
+      field: "actions",
+      headerName: "Actions",
+      width: 150,
+      renderCell: (params) => (
+        <ActionsCell
+          params={params}
+          handleEditClick={handleEditClick}
+          handleDeleteClick={handleDeleteClick}
+        />
+      ),
+    },
+  ];
+
   return (
     <PageContainer>
       <DataGrid
         rows={myDate}
-        columns={columns(handleEditClick, handleDeleteClick)}
+        columns={columns}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 20 },
