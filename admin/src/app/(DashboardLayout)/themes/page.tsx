@@ -21,7 +21,11 @@ interface ActionsCellProps {
   handleDeleteClick: (row: any) => void;
 }
 
-const ActionsCell: React.FC<ActionsCellProps> = ({ params, handleEditClick, handleDeleteClick }) => {
+const ActionsCell: React.FC<ActionsCellProps> = ({
+  params,
+  handleEditClick,
+  handleDeleteClick,
+}) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -40,7 +44,9 @@ const ActionsCell: React.FC<ActionsCellProps> = ({ params, handleEditClick, hand
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={() => handleEditClick(params.row)}>Edit</MenuItem>
-        <MenuItem onClick={() => handleDeleteClick(params.row)}>Delete</MenuItem>
+        <MenuItem onClick={() => handleDeleteClick(params.row)}>
+          Delete
+        </MenuItem>
       </Menu>
     </>
   );

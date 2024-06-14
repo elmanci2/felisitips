@@ -15,6 +15,10 @@ const RoutesListPost = [
         route: "/update-phrase",
         function: controller_1.updatePhrase,
     },
+    {
+        route: "/update-theme",
+        function: controller_1.updateTheme,
+    },
 ];
 exports.RoutesListPost = RoutesListPost;
 const RoutesListGet = [
@@ -27,7 +31,7 @@ const RoutesListGet = [
         function: controller_1.dropPhrase,
     },
     {
-        route: "/delete-phrase",
+        route: "/delete-theme",
         function: controller_1.dropTheme,
     },
     {

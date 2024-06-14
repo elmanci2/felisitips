@@ -14,77 +14,78 @@ const models_1 = require("../db/models/models");
 const util_1 = require("../util");
 exports.Frases = [
     {
-        phrase: '"Cuandotodo parezca ir en tu contra, recuerda que el avión despega contra el viento". Henry Ford.',
+        phrase: '"Cuando todo parezca ir en tu contra, recuerda que el avión despega contra el viento". Henry Ford.',
         id: 854,
     },
     {
-        phrase: '"Elobjetivo no está siempre destinado a ser alcanzado, a menudo sirve simplemente como una meta a la cual que apuntar". Bruce Lee.',
+        phrase: '"El objetivo no está siempre destinado a ser alcanzado, a menudo sirve simplemente como una meta a la cual apuntar". Bruce Lee.',
         id: 733,
     },
     {
-        phrase: '"Nohay que ir para atrás ni para darse impulso". Lao Tsé.',
+        phrase: '"No hay que ir para atrás ni para darse impulso". Lao Tsé.',
         id: 928,
     },
     {
-        phrase: '"Soloimagina lo precioso que puede ser arriesgarse y que todo salga bien". Mario Benedetti.',
+        phrase: '"Solo imagina lo precioso que puede ser arriesgarse y que todo salga bien". Mario Benedetti.',
         id: 686,
     },
     {
-        phrase: '"Lavida es un 10% lo que te sucede y un 90% de cómo reaccionas a ello". Charles R. Swindoll.',
+        phrase: '"La vida es un 10% lo que te sucede y un 90% de cómo reaccionas a ello". Charles R. Swindoll.',
         id: 766,
     },
     {
-        phrase: '"Lapregunta no es quién me va a dejar; es quién va a detenerme". Ayn Rand.',
+        phrase: '"La pregunta no es quién me va a dejar; es quién va a detenerme". Ayn Rand.',
         id: 828,
     },
     {
-        phrase: '"Eléxito no se logra solo con cualidades especiales. Es, sobre todo, un trabajo de constancia, de método y de organización". Víctor Hugo.',
+        phrase: '"El éxito no se logra solo con cualidades especiales. Es, sobre todo, un trabajo de constancia, de método y de organización". Víctor Hugo.',
         id: 15,
     },
     {
-        phrase: '"Sino puedes volar, corre; si no puedes correr, camina; si no puedes caminar, gatea, pero sigue avanzando hacia tu meta". Martin Luther King.',
+        phrase: '"Si no puedes volar, corre; si no puedes correr, camina; si no puedes caminar, gatea, pero sigue avanzando hacia tu meta". Martin Luther King.',
         id: 517,
     },
     {
-        phrase: "Lapregunta que me hago casi todos los días es: '¿Estoy haciendo lo más importante que puedo?'. Mark Zuckerberg.",
+        phrase: "\"La pregunta que me hago casi todos los días es: '¿Estoy haciendo lo más importante que puedo?'\". Mark Zuckerberg.",
         id: 981,
     },
     {
-        phrase: '"Únicamenteaquellos que se atreven a tener grandes fracasos, terminan consiguiendo grandes éxitos". Robert F. Kennedy.',
+        phrase: '"Únicamente aquellos que se atreven a tener grandes fracasos, terminan consiguiendo grandes éxitos". Robert F. Kennedy.',
         id: 635,
     },
     {
-        phrase: '"Sivas a mirar atrás, que sea para ver lo que has trabajado para llegar donde estás". Mireia Belmonte.',
+        phrase: '"Si vas a mirar atrás, que sea para ver lo que has trabajado para llegar donde estás". Mireia Belmonte.',
         id: 550,
     },
     {
-        phrase: '"Nopodemos estar en modo de supervivencia. Tenemos que estar en modo de crecimiento". Jeff Bezos.',
+        phrase: '"No podemos estar en modo de supervivencia. Tenemos que estar en modo de crecimiento". Jeff Bezos.',
         id: 740,
     },
     {
-        phrase: '"Cadafracaso enseña al individuo algo que necesitaba aprender". Charles Dickens.',
+        phrase: '"Cada fracaso enseña al individuo algo que necesitaba aprender". Charles Dickens.',
         id: 341,
     },
     {
-        phrase: '"Elque pasa el tiempo arrepintiéndose del pasado, pierde el presente y arriesga el futuro". Francisco de Quevedo.',
+        phrase: '"El que pasa el tiempo arrepintiéndose del pasado, pierde el presente y arriesga el futuro". Francisco de Quevedo.',
         id: 298,
     },
     {
-        phrase: '"Nuncapienso en las consecuencias de fallar un gran tiro. Cuando se piensa en las consecuencias, se está pensando en un resultado negativo". Michael Jordan.',
+        phrase: '"Nunca pienso en las consecuencias de fallar un gran tiro. Cuando se piensa en las consecuencias, se está pensando en un resultado negativo". Michael Jordan.',
         id: 942,
     },
     {
-        phrase: '"Saberlo que hay que hacer elimina el miedo". Rosa Parks.',
+        phrase: '"Saber lo que hay que hacer elimina el miedo". Rosa Parks.',
         id: 101,
     },
     {
-        phrase: '"Lamayor parte de las grandes cosas que ha conseguido el hombre fueron declaradas imposibles antes de que alguien las hiciera". Louis D. Brandeis.',
+        phrase: '"La mayor parte de las grandes cosas que ha conseguido el hombre fueron declaradas imposibles antes de que alguien las hiciera". Louis D. Brandeis.',
         id: 247,
     },
     {
-        phrase: '"Lavida debe ser comprendida hacia detrás, pero debe ser vivida hacia delante". Søren Kierkegaard.',
+        phrase: '"La vida debe ser comprendida hacia detrás, pero debe ser vivida hacia delante". Søren Kierkegaard.',
         id: 389,
     },
+    //  listo 
     {
         phrase: '"Cuandoera niño soñaba, pero dejé de soñar y empecé a hacer, porque es el poder de lo que se realiza lo que vuelve los sueños realidad". Usain Bolt.',
         id: 574,

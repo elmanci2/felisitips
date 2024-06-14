@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.searchAllPhrase = exports.updatePhrase = exports.dropTheme = exports.dropPhrase = exports.getAllThemes = exports.getAllPhrase = exports.addTheme = exports.addPhrase = void 0;
+exports.updateTheme = exports.searchAllPhrase = exports.updatePhrase = exports.dropTheme = exports.dropPhrase = exports.getAllThemes = exports.getAllPhrase = exports.addTheme = exports.addPhrase = void 0;
 const models_1 = require("../db/models/models");
 const sequelize_1 = require("sequelize");
 const addPhrase = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -19,7 +19,6 @@ const addPhrase = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             error: "not found",
         });
     try {
-        console.log(phrase);
         yield models_1.Phrase.create({
             by,
             phrase,
@@ -40,7 +39,10 @@ const addTheme = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             error: "not found",
         });
     try {
-        yield models_1.Theme.create();
+        yield models_1.Theme.create({
+            name,
+            url,
+        });
         res.status(200).json({
             state: "ok",
         });
@@ -131,6 +133,30 @@ const updatePhrase = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.updatePhrase = updatePhrase;
+const updateTheme = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, url, id } = req.body;
+    if (!name && !url && !id)
+        res.status(400).json({
+            error: "not found",
+        });
+    try {
+        yield models_1.Theme.update({
+            name,
+            url,
+        }, {
+            where: {
+                id,
+            },
+        });
+        res.status(200).json({
+            state: "ok",
+        });
+    }
+    catch (error) {
+        res.status(500).send("internal server error");
+    }
+});
+exports.updateTheme = updateTheme;
 const searchAllPhrase = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const term = req.query.term;
