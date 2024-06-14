@@ -1,6 +1,6 @@
 "use client";
 import PageContainer from "@/app/(DashboardLayout)/components/container/PageContainer";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
 import axios from "axios";
 import { useEffect, useState, useCallback } from "react";
 import {
@@ -15,11 +15,17 @@ import {
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { severConfig } from "@/server/config";
 
-const ActionsCell = ({ params, handleEditClick, handleDeleteClick }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
+interface ActionsCellProps {
+  params: GridRenderCellParams;
+  handleEditClick: (row: any) => void;
+  handleDeleteClick: (row: any) => void;
+}
+
+const ActionsCell: React.FC<ActionsCellProps> = ({ params, handleEditClick, handleDeleteClick }) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -40,11 +46,11 @@ const ActionsCell = ({ params, handleEditClick, handleDeleteClick }) => {
   );
 };
 
-const Quote = () => {
-  const [myDate, setMyDate] = useState([]);
+const Quote: React.FC = () => {
+  const [myDate, setMyDate] = useState<any[]>([]);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [selectedPhrase, setSelectedPhrase] = useState(null);
+  const [selectedPhrase, setSelectedPhrase] = useState<any>(null);
   const [editedPhrase, setEditedPhrase] = useState("");
   const [editedAuthor, setEditedAuthor] = useState("");
 
@@ -57,14 +63,14 @@ const Quote = () => {
     }
   };
 
-  const handleEditClick = useCallback((row) => {
+  const handleEditClick = useCallback((row: any) => {
     setSelectedPhrase(row);
     setEditedPhrase(row.phrase);
     setEditedAuthor(row.by);
     setIsEditModalOpen(true);
   }, []);
 
-  const handleDeleteClick = useCallback((row) => {
+  const handleDeleteClick = useCallback((row: any) => {
     setSelectedPhrase(row);
     setIsDeleteModalOpen(true);
   }, []);
@@ -104,7 +110,7 @@ const Quote = () => {
       field: "checkbox",
       headerName: "Checkbox",
       width: 100,
-      renderCell: (params) => (
+      renderCell: (params: GridRenderCellParams) => (
         <input
           type="checkbox"
           checked={params.row.selected}
@@ -120,7 +126,7 @@ const Quote = () => {
       field: "actions",
       headerName: "Actions",
       width: 150,
-      renderCell: (params) => (
+      renderCell: (params: GridRenderCellParams) => (
         <ActionsCell
           params={params}
           handleEditClick={handleEditClick}

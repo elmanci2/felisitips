@@ -1,6 +1,6 @@
 "use client";
 import PageContainer from "@/app/(DashboardLayout)/components/container/PageContainer";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
 import axios from "axios";
 import { useEffect, useState, useCallback } from "react";
 import {
@@ -15,11 +15,17 @@ import {
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { severConfig } from "@/server/config";
 
-const ActionsCell = ({ params, handleEditClick, handleDeleteClick }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
+interface ActionsCellProps {
+  params: GridRenderCellParams;
+  handleEditClick: (row: any) => void;
+  handleDeleteClick: (row: any) => void;
+}
+
+const ActionsCell: React.FC<ActionsCellProps> = ({ params, handleEditClick, handleDeleteClick }) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -34,19 +40,17 @@ const ActionsCell = ({ params, handleEditClick, handleDeleteClick }) => {
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={() => handleEditClick(params.row)}>Edit</MenuItem>
-        <MenuItem onClick={() => handleDeleteClick(params.row)}>
-          Delete
-        </MenuItem>
+        <MenuItem onClick={() => handleDeleteClick(params.row)}>Delete</MenuItem>
       </Menu>
     </>
   );
 };
 
-const SamplePage = () => {
-  const [myDate, setMyDate] = useState([]);
+const SamplePage: React.FC = () => {
+  const [myDate, setMyDate] = useState<any[]>([]);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [selectedTheme, setSelectedTheme] = useState(null);
+  const [selectedTheme, setSelectedTheme] = useState<any>(null);
   const [editedUrl, setEditedUrl] = useState("");
   const [editedName, setEditedName] = useState("");
 
@@ -59,7 +63,7 @@ const SamplePage = () => {
     }
   };
 
-  const handleDeleteClick = useCallback((row) => {
+  const handleDeleteClick = useCallback((row: any) => {
     setSelectedTheme(row);
     setIsDeleteModalOpen(true);
   }, []);
@@ -76,7 +80,7 @@ const SamplePage = () => {
     }
   };
 
-  const handleEditClick = useCallback((row) => {
+  const handleEditClick = useCallback((row: any) => {
     setSelectedTheme(row);
     setEditedUrl(row.url);
     setEditedName(row.name);
@@ -110,7 +114,7 @@ const SamplePage = () => {
       field: "actions",
       headerName: "Actions",
       width: 150,
-      renderCell: (params) => (
+      renderCell: (params: GridRenderCellParams) => (
         <ActionsCell
           params={params}
           handleEditClick={handleEditClick}
