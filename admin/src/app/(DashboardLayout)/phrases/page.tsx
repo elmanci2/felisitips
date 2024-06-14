@@ -2,7 +2,7 @@
 import PageContainer from "@/app/(DashboardLayout)/components/container/PageContainer";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import {
   Button,
   Modal,
@@ -14,6 +14,33 @@ import {
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { severConfig } from "@/server/config";
+
+const renderActionsCell = (params, handleEditClick, handleDeleteClick) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <>
+      <IconButton onClick={handleClick}>
+        <MoreVertIcon />
+      </IconButton>
+      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+        <MenuItem onClick={() => handleEditClick(params.row)}>Edit</MenuItem>
+        <MenuItem onClick={() => handleDeleteClick(params.row)}>
+          Delete
+        </MenuItem>
+      </Menu>
+    </>
+  );
+};
 
 const columns = (handleEditClick, handleDeleteClick) => [
   {
@@ -36,34 +63,8 @@ const columns = (handleEditClick, handleDeleteClick) => [
     field: "actions",
     headerName: "Actions",
     width: 150,
-    renderCell: (params) => {
-      const [anchorEl, setAnchorEl] = useState(null);
-      const open = Boolean(anchorEl);
-
-      const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-      };
-
-      const handleClose = () => {
-        setAnchorEl(null);
-      };
-
-      return (
-        <>
-          <IconButton onClick={handleClick}>
-            <MoreVertIcon />
-          </IconButton>
-          <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-            <MenuItem onClick={() => handleEditClick(params.row)}>
-              Edit
-            </MenuItem>
-            <MenuItem onClick={() => handleDeleteClick(params.row)}>
-              Delete
-            </MenuItem>
-          </Menu>
-        </>
-      );
-    },
+    renderCell: (params) =>
+      renderActionsCell(params, handleEditClick, handleDeleteClick),
   },
 ];
 
@@ -84,17 +85,17 @@ const Quote = () => {
     }
   };
 
-  const handleEditClick = (row) => {
+  const handleEditClick = useCallback((row) => {
     setSelectedPhrase(row);
     setEditedPhrase(row.phrase);
     setEditedAuthor(row.by);
     setIsEditModalOpen(true);
-  };
+  }, []);
 
-  const handleDeleteClick = (row) => {
+  const handleDeleteClick = useCallback((row) => {
     setSelectedPhrase(row);
     setIsDeleteModalOpen(true);
-  };
+  }, []);
 
   const handleSaveClick = async () => {
     try {
