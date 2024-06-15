@@ -1,3 +1,3 @@
 export const severConfig = {
-  uri: "http://localhost:4000",
+  uri: "https://felisitips.onrender.com",
 };
